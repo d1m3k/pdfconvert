@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config/site';
+---
+<Base title={`Terms of Use — ${SITE.name}`} description="The simple terms for using PdftConvert's free browser-based file tools.">
+  <div class="wrap">
+    <section class="hero"><p class="eyebrow">Legal</p><h1>Terms of Use</h1></section>
+    <div class="prose" style="padding-bottom:40px">
+      <h2>The service</h2>
+      <p>{SITE.name} provides free file tools that run in your browser. The tools are provided "as is", without warranties of any kind. Always keep your original files and check results before relying on them for anything important.</p>
+      <h2>Your responsibilities</h2>
+      <p>You are responsible for the files you process and for having the rights to use them. Do not use these tools to infringe copyright or other rights, or to process material you have no right to handle. Because processing happens on your own device, you are also responsible for keeping your own copies and backups.</p>
+      <h2>Availability</h2>
+      <p>We may add, change or retire tools at any time. Tools depend on your browser's capabilities; a current version of a major browser is recommended.</p>
+      <h2>Liability</h2>
+      <p>To the maximum extent permitted by law, {SITE.name} is not liable for any loss arising from the use of these tools, including loss of files or data.</p>
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,82 @@
+---
+import Base from '../../layouts/Base.astro';
+import { TOOLS } from '../../config/site';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const related = TOOLS.filter(t => t.slug !== 'compress-image');
+---
+<Base title="Compress Image — Shrink PNG, JPG & WebP Free | PdftConvert" description="Compress images online for free with a quality slider you control. Batch support, optional resizing, download one by one or as a ZIP. Runs entirely in your browser — no uploads.">
+  <div class="wrap">
+    <section class="hero" style="padding-bottom:0">
+      <p class="eyebrow">Image tool · Runs 100% in your browser</p>
+      <h1>Compress Image</h1>
+      <p class="lede">Make PNG, JPG and WebP files smaller for uploads, forms and messaging — without sending a single photo to a server. Set the quality, compress, and compare the sizes before you download.</p>
+    </section>
+
+    <div class="workbench">
+      <div class="dropzone" id="dz">
+        <p class="big">Drop images here</p>
+        <p>or click to choose them · PNG, JPG, WebP · processed locally</p>
+      </div>
+      <input type="file" id="file" accept="image/*" multiple hidden />
+      <ul class="filelist" id="filelist"></ul>
+      <div class="options">
+        <label>Quality <span class="qval" id="qval">80%</span>
+          <input type="range" id="quality" min="10" max="100" value="80" />
+        </label>
+        <label>Output format
+          <select id="format">
+            <option value="keep" selected>Keep original</option>
+            <option value="image/jpeg">JPG (smallest photos)</option>
+            <option value="image/webp">WebP (modern)</option>
+          </select>
+        </label>
+        <label>Max dimension
+          <select id="maxdim">
+            <option value="0" selected>Original size</option>
+            <option value="2048">2048 px</option>
+            <option value="1280">1280 px</option>
+            <option value="800">800 px</option>
+          </select>
+        </label>
+      </div>
+      <button class="btn" id="go" disabled>Compress images</button>
+      <p class="status" id="status">Add one or more images to compress.</p>
+      <div class="results" id="results"></div>
+    </div>
+
+    <section class="block prose">
+      <h2>How to compress an image</h2>
+      <ol class="steps">
+        <li><strong>Add your images.</strong> Drop them into the box above — batches are welcome.</li>
+        <li><strong>Pick your settings.</strong> Quality 75–85% is the sweet spot for photos. Converting PNG photos to JPG or WebP usually saves the most.</li>
+        <li><strong>Press Compress.</strong> Each image is re-encoded on your device, and the result list shows exactly how much you saved per file.</li>
+        <li><strong>Download.</strong> Save files one by one, or grab them all as a single ZIP.</li>
+      </ol>
+
+      <h2>Good to know</h2>
+      <p>PNG compression here means re-encoding and optional resizing; a PNG screenshot full of text stays perfectly sharp, while a PNG <em>photo</em> shrinks far more when converted to JPG or WebP. If a result ever comes out larger than the original — possible with already-tiny files — keep the original instead. Need an image under a form's size limit? Lower the quality a few points at a time and watch the result sizes.</p>
+
+      <h2>Frequently asked questions</h2>
+      <details class="faq"><summary>What quality setting should I use?</summary><p>For photos, 80% is a good default: much smaller files with no visible difference at normal viewing sizes. For images that will be zoomed or printed, try 90%.</p></details>
+      <details class="faq"><summary>Why did my PNG not get much smaller?</summary><p>PNG is a lossless format, so re-encoding alone saves little on photos. Switch the output format to JPG or WebP, or set a max dimension — that is where the big savings are.</p></details>
+      <details class="faq"><summary>Are my photos uploaded to a server?</summary><p>No. Compression runs in your browser using your device's own processing. Airplane-mode test it if you like — it still works.</p></details>
+      <details class="faq"><summary>Can I compress images in a batch?</summary><p>Yes — add as many as you like, compress them together, and download everything as one ZIP file.</p></details>
+    </section>
+
+    <section class="block">
+      <p class="eyebrow">Keep going</p>
+      <h2>Related tools</h2>
+      <div class="grid">
+        {related.map(t => (
+          <a class="toolcard" href={`${base}/tool/${t.slug}`}>
+            <span class="tag">{t.category}</span>
+            <h3>{t.name}</h3>
+            <p>{t.blurb}</p>
+            <span class="go">Open tool →</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+  <script>import '../../scripts/compress-image.ts';</script>
+</Base>

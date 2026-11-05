@@ -1,0 +1,62 @@
+---
+import Base from '../../layouts/Base.astro';
+import { TOOLS } from '../../config/site';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const related = TOOLS.filter(t => t.slug !== 'merge-pdf');
+---
+<Base title="Merge PDF — Combine PDFs Free, In Your Browser | PdftConvert" description="Merge two or more PDF files into one, in the order you choose. Free, no sign-up, no watermark — and your PDFs are combined locally in your browser, never uploaded.">
+  <div class="wrap">
+    <section class="hero" style="padding-bottom:0">
+      <p class="eyebrow">PDF tool · Runs 100% in your browser</p>
+      <h1>Merge PDF</h1>
+      <p class="lede">Combine several PDFs into a single file. Set the order with the arrow buttons, press Merge, and download the result — your documents never leave this device.</p>
+    </section>
+
+    <div class="workbench">
+      <div class="dropzone" id="dz">
+        <p class="big">Drop PDF files here</p>
+        <p>or click to choose them from your device · PDFs only · processed locally</p>
+      </div>
+      <input type="file" id="file" accept="application/pdf,.pdf" multiple hidden />
+      <ul class="filelist" id="filelist"></ul>
+      <button class="btn" id="go" disabled>Merge PDFs</button>
+      <p class="status" id="status">Add at least two PDF files to merge.</p>
+      <div class="results" id="results"></div>
+    </div>
+
+    <section class="block prose">
+      <h2>How to merge PDF files</h2>
+      <ol class="steps">
+        <li><strong>Add your PDFs.</strong> Drop them into the box above or click to browse. You can add as many as you need.</li>
+        <li><strong>Set the order.</strong> Use the ↑ and ↓ buttons beside each file — the merged document follows the list from top to bottom.</li>
+        <li><strong>Press Merge PDFs.</strong> Your browser combines the files on the spot. Nothing is uploaded.</li>
+        <li><strong>Download.</strong> The merged file saves as <em>merged.pdf</em>, ready to send or archive.</li>
+      </ol>
+
+      <h2>Good to know</h2>
+      <p>Page quality is preserved exactly — merging copies pages from the original files rather than re-rendering them, so text stays sharp and selectable. Password-protected or damaged PDFs cannot be read by the browser; if one file fails, remove it and merge the rest. Very large PDFs are limited only by your device's memory.</p>
+
+      <h2>Frequently asked questions</h2>
+      <details class="faq"><summary>Is my PDF really not uploaded?</summary><p>Correct. The combining happens in this browser tab using code that runs on your device. You can verify it yourself: load this page, switch on airplane mode, and merge — it still works.</p></details>
+      <details class="faq"><summary>Is there a limit on how many files I can merge?</summary><p>There is no account limit and no daily counter. The practical limit is your device's memory; dozens of ordinary documents merge without trouble.</p></details>
+      <details class="faq"><summary>Will the merged PDF keep its quality?</summary><p>Yes. Pages are copied, not re-compressed, so the merged file looks exactly like the originals.</p></details>
+      <details class="faq"><summary>Can I merge a password-protected PDF?</summary><p>Not directly — the browser cannot open it without the password. Unlock your own file first in a PDF reader, then merge the unlocked copy.</p></details>
+    </section>
+
+    <section class="block">
+      <p class="eyebrow">Keep going</p>
+      <h2>Related tools</h2>
+      <div class="grid">
+        {related.map(t => (
+          <a class="toolcard" href={`${base}/tool/${t.slug}`}>
+            <span class="tag">{t.category}</span>
+            <h3>{t.name}</h3>
+            <p>{t.blurb}</p>
+            <span class="go">Open tool →</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+  <script>import '../../scripts/merge.ts';</script>
+</Base>

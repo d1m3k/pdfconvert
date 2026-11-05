@@ -1,0 +1,1 @@
+{"dependencies":{"astro":"^5.0.0","jszip":"^3.10.1","pdf-lib":"^1.17.1"},"name":"pdftconvert-demo","private":true,"scripts":{"build":"astro build","dev":"astro dev","preview":"astro preview"},"type":"module","version":"0.1.0"}

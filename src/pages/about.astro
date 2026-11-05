@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config/site';
+---
+<Base title={`About ${SITE.name} — Tools That Run On Your Device`} description="Why PdftConvert processes every file locally in your browser instead of on a server, and what that means for your privacy, speed and limits.">
+  <div class="wrap">
+    <section class="hero"><p class="eyebrow">About</p><h1>Tools that run on your device</h1></section>
+    <div class="prose" style="padding-bottom:40px">
+      <p>Most online file tools work the same way: you upload a document to a company's server, their machines process it, and you download the result. That design has real costs — your contracts, scans and photos sit on a stranger's disk, queues slow down at busy hours, and "free" tiers count your files so they can sell you a bigger allowance.</p>
+      <p>{SITE.name} takes the other road. Modern browsers are powerful enough to merge PDFs, build documents and compress images on their own, so that is exactly what happens here: the tool's code loads into your tab, your files are processed by your own device, and the result downloads straight back to you. There is no upload step because there is no server to upload to.</p>
+      <h2>What that means in practice</h2>
+      <p><strong>Privacy you can test.</strong> Open any tool, turn on airplane mode, and use it. If it still works — and it will — nothing needed a server. <strong>No accounts and no counters.</strong> With no server bill per file, there is nothing to ration: no sign-ups, no daily limits, no watermarks. <strong>Speed.</strong> Skipping the upload and download of the original file makes most jobs finish faster, especially on slow connections.</p>
+      <h2>Honest limits</h2>
+      <p>Your device does the lifting, so very large files are bounded by its memory, and a few heavyweight conversions (such as perfect Word-to-PDF fidelity) genuinely need server software. Where a tool here cannot match a server product, its page says so plainly rather than overpromising.</p>
+    </div>
+  </div>
+</Base>

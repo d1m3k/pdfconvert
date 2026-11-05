@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config/site';
+---
+<Base title={`Privacy Policy — ${SITE.name}`} description="How PdftConvert handles your files and data: files are processed locally in your browser and never uploaded, stored or seen by us.">
+  <div class="wrap">
+    <section class="hero"><p class="eyebrow">Legal</p><h1>Privacy Policy</h1></section>
+    <div class="prose" style="padding-bottom:40px">
+      <h2>Your files</h2>
+      <p>Every tool on {SITE.name} processes files entirely within your web browser, on your own device. Your files are <strong>never uploaded</strong> to our servers or any third-party server, never stored, and never accessible to us. When you close the tab, nothing of your files remains anywhere on our side — because nothing ever arrived.</p>
+      <h2>Data we can see</h2>
+      <p>Like most websites, our hosting provider records standard technical logs (such as page requested, browser type and approximate region) for security and reliability. These logs contain no file content — your documents are technically incapable of reaching them.</p>
+      <h2>Cookies and advertising</h2>
+      <p>If advertising is enabled on this site, advertising partners may use cookies to serve and measure ads, as described in their own policies. You can block or clear cookies in your browser settings at any time; the tools will keep working.</p>
+      <h2>Changes</h2>
+      <p>If this policy changes, the new text will be published on this page with a revised date. The core promise — files are processed locally and never uploaded — is architectural, and changing it would require rebuilding the site, not just editing this page.</p>
+    </div>
+  </div>
+</Base>

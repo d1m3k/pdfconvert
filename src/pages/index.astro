@@ -1,0 +1,64 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE, TOOLS, PLANNED } from '../config/site';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title={`${SITE.name} — Free PDF & Image Tools That Never Upload Your Files`} description="Merge PDFs, turn images into PDFs and compress images for free. Every tool runs entirely in your browser: no uploads, no sign-up, no watermarks, no daily limits.">
+  <div class="wrap hero">
+    <p class="eyebrow">Free tools · No upload · No sign-up</p>
+    <h1>File tools that <span class="hl">never upload</span> your files</h1>
+    <p class="lede">Merge a PDF, shrink a photo, build a document from images — the work happens on your own device, inside this browser tab. Nothing is sent to a server, because there is no server. Close the tab and your files are exactly where they always were: with you.</p>
+  </div>
+
+  <div class="strip"><div class="wrap">
+    <span><b>0</b> files uploaded</span>
+    <span><b>0</b> accounts needed</span>
+    <span><b>0</b> watermarks</span>
+    <span><b>∞</b> daily limit</span>
+  </div></div>
+
+  <div class="wrap">
+    <section class="block" id="tools">
+      <p class="eyebrow">Working tools</p>
+      <h2>Pick a tool and drop a file</h2>
+      <div class="grid">
+        {TOOLS.map(t => (
+          <a class="toolcard" href={`${base}/tool/${t.slug}`}>
+            <span class="tag">{t.category}</span>
+            <h3>{t.name}</h3>
+            <p>{t.blurb}</p>
+            <span class="go">Open tool →</span>
+          </a>
+        ))}
+        {PLANNED.map(p => (
+          <div class="toolcard planned">
+            <span class="tag">{p.category}</span>
+            <h3>{p.name}</h3>
+            <p>In the build queue. The catalogue grows tool by tool, each one fully client-side like the rest.</p>
+            <span class="go">Coming soon</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="block">
+      <p class="eyebrow">Why local processing matters</p>
+      <h2>Your files are nobody's business</h2>
+      <div class="facts">
+        <div class="fact"><h3>Truly private</h3><p>Other tools ask you to upload contracts, ID scans and payslips to a stranger's server. Ours are processed by your own browser — you can switch off the internet after the page loads and they still work.</p></div>
+        <div class="fact"><h3>No daily caps</h3><p>There is no account, no counter and no "10 free files per day". Use every tool as often as you need, on as many files as your device can handle.</p></div>
+        <div class="fact"><h3>Fast by design</h3><p>No upload queue and no download wait for big files: your device does the work at local speed, and the result is ready the moment processing ends.</p></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <p class="eyebrow">From the blog</p>
+      <h2>Guides &amp; explainers</h2>
+      <a class="postcard" href={`${base}/blog/how-to-merge-pdf-files`}>
+        <span class="tag">Tutorial · PDF</span>
+        <h3>How to Merge PDF Files Without Uploading Them Anywhere</h3>
+        <p>Three safe ways to combine PDFs — and why the method that never sends your documents to a server is the one worth trusting with contracts and ID scans.</p>
+      </a>
+    </section>
+  </div>
+</Base>

@@ -1,0 +1,79 @@
+---
+import '../styles/global.css';
+import { SITE, TOOLS } from '../config/site';
+
+interface Props { title: string; description: string; }
+const { title, description } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const path = Astro.url.pathname;
+const isActive = (slug: string) => path.includes(`/tool/${slug}`);
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2316130E'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='15' font-weight='bold' fill='%23FF4D00' text-anchor='middle'%3Ep%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Public+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="mainbar">
+    <div class="wrap">
+      <a class="logo" href={`${base}/`}><span class="mark">p_</span>{SITE.name}</a>
+      <button class="burger" id="burger" aria-label="Menu">☰</button>
+      <nav class="main" id="mainnav">
+        {TOOLS.map(t => <a href={`${base}/tool/${t.slug}`} aria-current={isActive(t.slug) ? 'page' : undefined}>{t.name}</a>)}
+        <a href={`${base}/blog`}>Blog</a>
+        <a href={`${base}/about`}>About</a>
+        <a class="cta" href={`${base}/#tools`}>All tools</a>
+      </nav>
+    </div>
+  </header>
+
+  <main><slot /></main>
+
+  <footer class="site">
+    <div class="wrap">
+      <div class="cols">
+        <div>
+          <h4>{SITE.name}</h4>
+          <p style="margin:0">Free file tools that run entirely in your browser. Your files are processed on your own device and never uploaded to any server.</p>
+        </div>
+        <div>
+          <h4>PDF tools</h4>
+          <ul>
+            <li><a href={`${base}/tool/merge-pdf`}>Merge PDF</a></li>
+            <li><a href={`${base}/tool/image-to-pdf`}>Image to PDF</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Image tools</h4>
+          <ul>
+            <li><a href={`${base}/tool/compress-image`}>Compress Image</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Site</h4>
+          <ul>
+            <li><a href={`${base}/blog`}>Blog</a></li>
+            <li><a href={`${base}/about`}>About</a></li>
+            <li><a href={`${base}/privacy-policy`}>Privacy Policy</a></li>
+            <li><a href={`${base}/terms`}>Terms of Use</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="fine">© {new Date().getFullYear()} {SITE.name}. Demo build — every tool on this site processes files locally in your browser.</div>
+    </div>
+  </footer>
+
+  <script>
+    const burger = document.getElementById('burger');
+    const nav = document.getElementById('mainnav');
+    burger?.addEventListener('click', () => nav?.classList.toggle('open'));
+  </script>
+</body>
+</html>

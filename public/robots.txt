@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://d1m3k.github.io/pdfconvert/sitemap.xml

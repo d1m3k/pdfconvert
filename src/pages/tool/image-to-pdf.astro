@@ -1,0 +1,77 @@
+---
+import Base from '../../layouts/Base.astro';
+import { TOOLS } from '../../config/site';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const related = TOOLS.filter(t => t.slug !== 'image-to-pdf');
+---
+<Base title="Image to PDF — Convert JPG & PNG to PDF Free | PdftConvert" description="Turn JPG, PNG and other images into one PDF document in your browser. Choose A4 or fit-to-image pages and margins. Free, private, no uploads and no watermarks.">
+  <div class="wrap">
+    <section class="hero" style="padding-bottom:0">
+      <p class="eyebrow">PDF tool · Runs 100% in your browser</p>
+      <h1>Image to PDF</h1>
+      <p class="lede">Build one clean PDF from your photos and scans. Order the images, choose the page size, and download — everything happens on your device.</p>
+    </section>
+
+    <div class="workbench">
+      <div class="dropzone" id="dz">
+        <p class="big">Drop images here</p>
+        <p>or click to choose them · JPG, PNG, WebP and more · processed locally</p>
+      </div>
+      <input type="file" id="file" accept="image/*" multiple hidden />
+      <ul class="filelist" id="filelist"></ul>
+      <div class="options">
+        <label>Page size
+          <select id="pagesize">
+            <option value="a4" selected>A4 (auto orientation)</option>
+            <option value="fit">Fit to image</option>
+          </select>
+        </label>
+        <label>Margin
+          <select id="margin">
+            <option value="0">None</option>
+            <option value="24" selected>Small</option>
+            <option value="48">Normal</option>
+          </select>
+        </label>
+      </div>
+      <button class="btn" id="go" disabled>Create PDF</button>
+      <p class="status" id="status">Add one or more images to build a PDF.</p>
+      <div class="results" id="results"></div>
+    </div>
+
+    <section class="block prose">
+      <h2>How to convert images to PDF</h2>
+      <ol class="steps">
+        <li><strong>Add your images.</strong> Drop photos, scans or screenshots into the box above — you can mix JPG, PNG and other formats.</li>
+        <li><strong>Order and set the page.</strong> Arrange images with ↑ ↓, then choose A4 pages or pages fitted to each image, plus a margin.</li>
+        <li><strong>Press Create PDF.</strong> Your browser places each image on its own page, centred and scaled to fit.</li>
+        <li><strong>Download.</strong> The document saves as <em>images.pdf</em>, ready for email, forms and archives.</li>
+      </ol>
+
+      <h2>Good to know</h2>
+      <p>JPG and PNG images are embedded at their original quality. A4 mode rotates the page automatically to match each image's orientation, so a landscape photo gets a landscape page. Scanned documents come out crispest with the "Fit to image" page size and no margin.</p>
+
+      <h2>Frequently asked questions</h2>
+      <details class="faq"><summary>Will my images lose quality inside the PDF?</summary><p>No. JPG and PNG files are placed into the PDF exactly as they are — no re-compression is applied.</p></details>
+      <details class="faq"><summary>How many images can I add?</summary><p>As many as your device can comfortably hold in memory — typical photo sets of 20–50 images are fine.</p></details>
+      <details class="faq"><summary>Can I choose which image goes on which page?</summary><p>Yes. One image per page, in list order from top to bottom. Use the arrow buttons to rearrange them before creating the PDF.</p></details>
+      <details class="faq"><summary>Are my photos uploaded anywhere?</summary><p>Never. The PDF is assembled in your browser tab; the images never leave your device.</p></details>
+    </section>
+
+    <section class="block">
+      <p class="eyebrow">Keep going</p>
+      <h2>Related tools</h2>
+      <div class="grid">
+        {related.map(t => (
+          <a class="toolcard" href={`${base}/tool/${t.slug}`}>
+            <span class="tag">{t.category}</span>
+            <h3>{t.name}</h3>
+            <p>{t.blurb}</p>
+            <span class="go">Open tool →</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+  <script>import '../../scripts/image-to-pdf.ts';</script>
+</Base>
