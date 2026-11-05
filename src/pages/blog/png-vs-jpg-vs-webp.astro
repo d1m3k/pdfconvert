@@ -1,0 +1,59 @@
+---
+import Base from '../../layouts/Base.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="PNG vs JPG vs WebP: Which Image Format Should You Use? | PdfConvert" description="A plain-language guide to the three image formats that run the web: when PNG's lossless pixels are worth their weight, when JPG wins, and where WebP beats both.">
+  <div class="wrap">
+    <section class="hero" style="padding-bottom:6px">
+      <p class="eyebrow">Explainer · Images · 5 Nov 2026</p>
+      <h1 style="text-transform:none">PNG vs JPG vs WebP: Which Format Should You Use?</h1>
+      <p class="lede">Same picture, three formats, wildly different file sizes. The right choice depends on one question: what is in the image — a photograph, or graphics with sharp edges?</p>
+    </section>
+
+    <div class="prose" style="padding-bottom:16px">
+      <h2>The one idea that explains everything</h2>
+      <p><strong>PNG is lossless</strong>: it stores every pixel exactly, which makes text, logos and screenshots perfectly sharp — and photographs enormous, because photos contain millions of pixels that are all slightly different. <strong>JPG is lossy</strong>: it throws away detail your eyes barely notice, which is catastrophic for crisp text edges and miraculous for photos. <strong>WebP is the modern middle</strong>: lossy or lossless as you choose, usually 25–35% smaller than JPG at the same quality, and supported by every current browser.</p>
+
+      <figure>
+        <svg viewBox="0 0 720 210" role="img" aria-label="Bar chart comparing the file size of the same photograph saved as PNG, JPG and WebP">
+          <text x="20" y="28" font-family="monospace" font-size="13" font-weight="bold" fill="#16130E">THE SAME 12-MEGAPIXEL PHOTO, THREE FORMATS</text>
+          <rect x="20" y="48" width="560" height="34" fill="#FFFDF6" stroke="#16130E" stroke-width="2"/>
+          <text x="32" y="70" font-size="13" font-weight="bold">PNG · lossless</text>
+          <text x="596" y="70" font-size="13" font-weight="bold" fill="#D63F00">±14 MB</text>
+          <rect x="20" y="98" width="86" height="34" fill="#FFE8DC" stroke="#16130E" stroke-width="2"/>
+          <text x="118" y="120" font-size="13" font-weight="bold">JPG · quality 85</text>
+          <text x="330" y="120" font-size="13" font-weight="bold" fill="#D63F00">±1.8 MB</text>
+          <rect x="20" y="148" width="62" height="34" fill="#16130E"/>
+          <text x="94" y="170" font-size="13" font-weight="bold">WebP · quality 85</text>
+          <text x="330" y="170" font-size="13" font-weight="bold" fill="#D63F00">±1.2 MB</text>
+          <text x="20" y="202" font-size="12" fill="#5E594E">Sizes are typical for a detailed photo; simple graphics behave very differently — see below.</text>
+        </svg>
+        <figcaption>Fig. 1 — Why photos should (almost) never be PNG</figcaption>
+      </figure>
+
+      <h2>So which one, when?</h2>
+      <p><strong>Photographs for sharing, email and uploads: JPG.</strong> Universal, small, and at 80–85% quality indistinguishable from the original on a screen. <strong>Anything with text, logos, diagrams or transparency: PNG.</strong> A screenshot saved as JPG grows fuzzy halos around every letter; PNG keeps it exact, and for simple graphics PNG files are small anyway, because flat colours compress beautifully. <strong>Images for your own website: WebP.</strong> The size savings are real and every modern browser displays it — just keep a JPG fallback habit for the odd old tool that refuses it.</p>
+
+      <figure>
+        <svg viewBox="0 0 720 190" role="img" aria-label="Decision diagram: is it a photo, does it need transparency, where will it be used">
+          <rect x="250" y="10" width="220" height="40" fill="#FFE8DC" stroke="#16130E" stroke-width="2.5"/>
+          <text x="360" y="35" font-size="13.5" text-anchor="middle" font-weight="bold">Is it a photograph?</text>
+          <text x="180" y="38" font-size="13" font-weight="bold" fill="#0E7A4F">YES →</text>
+          <rect x="20" y="70" width="240" height="40" fill="#FFFDF6" stroke="#16130E" stroke-width="2"/>
+          <text x="140" y="95" font-size="13" text-anchor="middle">For a website? → <tspan font-weight="bold">WebP</tspan></text>
+          <rect x="20" y="124" width="240" height="40" fill="#FFFDF6" stroke="#16130E" stroke-width="2"/>
+          <text x="140" y="149" font-size="13" text-anchor="middle">For sharing / forms? → <tspan font-weight="bold">JPG</tspan></text>
+          <text x="486" y="38" font-size="13" font-weight="bold" fill="#D63F00">NO ↓</text>
+          <rect x="440" y="70" width="260" height="40" fill="#FFFDF6" stroke="#16130E" stroke-width="2"/>
+          <text x="570" y="95" font-size="13" text-anchor="middle">Text / logo / screenshot → <tspan font-weight="bold">PNG</tspan></text>
+          <rect x="440" y="124" width="260" height="40" fill="#FFFDF6" stroke="#16130E" stroke-width="2"/>
+          <text x="570" y="149" font-size="13" text-anchor="middle">Needs transparency? → <tspan font-weight="bold">PNG or WebP</tspan></text>
+        </svg>
+        <figcaption>Fig. 2 — The 10-second decision</figcaption>
+      </figure>
+
+      <h2>Converting what you already have</h2>
+      <p>Stuck with the wrong format? Converting is a ten-second job, and on this site it happens in your browser rather than on a server: the <a href={`${base}/tool/convert-image`}>Convert Image</a> tool turns batches of PNG into JPG or WebP (and back), and <a href={`${base}/tool/compress-image`}>Compress Image</a> shrinks files that are the right format but too heavy. One warning worth repeating: JPG→PNG cannot bring back detail the JPG discarded. Convert down for size, keep the original for the archive.</p>
+    </div>
+  </div>
+</Base>

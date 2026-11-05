@@ -1,0 +1,90 @@
+---
+import Base from './Base.astro';
+import { SITE, TOOLS, type Tool } from '../config/site';
+
+interface Faq { q: string; a: string; }
+interface Props {
+  tool: Tool;
+  title: string;
+  description: string;
+  lede: string;
+  acceptAttr: string;
+  dropTitle: string;
+  dropHint: string;
+  ctaLabel: string;
+  initialStatus: string;
+  multiple?: boolean;
+  steps: string[];
+  goodToKnow: string;
+  faqs: Faq[];
+}
+const { tool, title, description, lede, acceptAttr, dropTitle, dropHint, ctaLabel, initialStatus, multiple = true, steps, goodToKnow, faqs } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const related = [
+  ...TOOLS.filter(t => t.category === tool.category && t.slug !== tool.slug).slice(0, 2),
+  ...TOOLS.filter(t => t.category !== tool.category).slice(0, 1),
+];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'SoftwareApplication', name: `${tool.name} — ${SITE.name}`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Any (web browser)', offers: { '@type': 'Offer', price: '0' }, description },
+    { '@type': 'FAQPage', mainEntity: faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+    { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${Astro.site}${base.replace(/^\//, '')}/` },
+      { '@type': 'ListItem', position: 2, name: tool.category === 'PDF' ? 'PDF Tools' : 'Image Tools', item: `${Astro.site}${base.replace(/^\//, '')}/${tool.category === 'PDF' ? 'pdf-tools' : 'image-tools'}` },
+      { '@type': 'ListItem', position: 3, name: tool.name },
+    ] },
+  ],
+};
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <div class="wrap">
+    <section class="hero" style="padding-bottom:0">
+      <p class="eyebrow">{tool.category} tool · Runs 100% in your browser</p>
+      <h1>{tool.name}</h1>
+      <p class="lede">{lede}</p>
+    </section>
+
+    <div class="workbench">
+      <div class="dropzone" id="dz">
+        <p class="big">{dropTitle}</p>
+        <p>{dropHint}</p>
+      </div>
+      <input type="file" id="file" accept={acceptAttr} multiple={multiple} hidden />
+      <ul class="filelist" id="filelist"></ul>
+      <slot name="options" />
+      <button class="btn" id="go" disabled>{ctaLabel}</button>
+      <p class="status" id="status">{initialStatus}</p>
+      <div class="results" id="results"></div>
+      <slot name="extra" />
+    </div>
+
+    <section class="block prose">
+      <h2>How to {tool.name.toLowerCase()}</h2>
+      <ol class="steps">
+        {steps.map(s => <li set:html={s} />)}
+      </ol>
+      <h2>Good to know</h2>
+      <p set:html={goodToKnow} />
+      <h2>Frequently asked questions</h2>
+      {faqs.map(f => (
+        <details class="faq"><summary>{f.q}</summary><p>{f.a}</p></details>
+      ))}
+    </section>
+
+    <section class="block">
+      <p class="eyebrow">Keep going</p>
+      <h2>Related tools</h2>
+      <div class="grid">
+        {related.map(t => (
+          <a class="toolcard" href={`${base}/tool/${t.slug}`}>
+            <span class="tag">{t.category}</span>
+            <h3>{t.name}</h3>
+            <p>{t.blurb}</p>
+            <span class="go">Open tool →</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</Base>

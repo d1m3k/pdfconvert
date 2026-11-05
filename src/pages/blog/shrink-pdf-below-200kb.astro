@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="How to Shrink a PDF Below 200 KB for an Upload Form | PdfConvert" description="A step-by-step playbook for getting a PDF under strict form limits like 200 KB or 500 KB: diagnose what makes it big, then compress in your browser without uploads.">
+  <div class="wrap">
+    <section class="hero" style="padding-bottom:6px">
+      <p class="eyebrow">Guide · PDF · 5 Nov 2026</p>
+      <h1 style="text-transform:none">How to Shrink a PDF Below 200 KB for an Upload Form</h1>
+      <p class="lede">"File exceeds the maximum size of 200 KB" is the most annoying sentence on the internet. Here is the reliable way under the limit — and how to tell what is making your file fat in the first place.</p>
+    </section>
+
+    <div class="prose" style="padding-bottom:16px">
+      <h2>Step 1 — Diagnose before you squeeze</h2>
+      <p>A PDF is heavy for one of three reasons, and each has a different cure. <strong>It is a scan or full of photos:</strong> the pages are pictures, and pictures are where the megabytes live — compression will work wonders. <strong>It is a born-digital document</strong> (exported from Word or a form system): usually already lean; if it is still over the limit, embedded fonts and one huge image are the usual suspects. <strong>It is a bundle</strong>: twenty pages when the form only needs four — no compressor beats simply deleting pages.</p>
+
+      <figure>
+        <svg viewBox="0 0 720 190" role="img" aria-label="Decision diagram for shrinking a PDF: delete pages, compress scans, or rebuild from lighter images">
+          <rect x="230" y="10" width="260" height="40" fill="#FFE8DC" stroke="#16130E" stroke-width="2.5"/>
+          <text x="360" y="35" font-size="13.5" text-anchor="middle" font-weight="bold">Why is the PDF over the limit?</text>
+          <rect x="16" y="76" width="216" height="66" fill="#FFFDF6" stroke="#16130E" stroke-width="2"/>
+          <text x="124" y="102" font-size="13" text-anchor="middle" font-weight="bold">Too many pages?</text>
+          <text x="124" y="124" font-size="12" text-anchor="middle" fill="#5E594E">Delete or split first</text>
+          <rect x="252" y="76" width="216" height="66" fill="#FFFDF6" stroke="#16130E" stroke-width="2"/>
+          <text x="360" y="102" font-size="13" text-anchor="middle" font-weight="bold">Scans / photos?</text>
+          <text x="360" y="124" font-size="12" text-anchor="middle" fill="#5E594E">Compress at Screen level</text>
+          <rect x="488" y="76" width="216" height="66" fill="#FFFDF6" stroke="#16130E" stroke-width="2"/>
+          <text x="596" y="102" font-size="13" text-anchor="middle" font-weight="bold">One giant image?</text>
+          <text x="596" y="124" font-size="12" text-anchor="middle" fill="#5E594E">Shrink it, rebuild the PDF</text>
+          <text x="360" y="172" font-size="12.5" text-anchor="middle" fill="#5E594E">All three cures run in your browser on this site — nothing is uploaded to do them.</text>
+        </svg>
+        <figcaption>Fig. 1 — Match the cure to the cause</figcaption>
+      </figure>
+
+      <h2>Step 2 — Compress, at the right strength</h2>
+      <p>Open the <a href={`${base}/tool/compress-pdf`}>Compress PDF</a> tool and start at <strong>Screen level (100 DPI)</strong>. For a scanned document of a few pages, that typically lands between 100 and 190 KB — under the classic 200 KB ceiling with room to spare. The tool reports the exact result, and if the rebuild is somehow not smaller than your original, it tells you instead of pretending. If Screen looks too soft for a document that will be read closely, try Balanced — but check the form's limit again; a prettier 240 KB file still gets rejected.</p>
+
+      <figure>
+        <svg viewBox="0 0 720 170" role="img" aria-label="Size ladder of a scanned document shrinking from 2.4 megabytes to 186 kilobytes">
+          <text x="20" y="26" font-family="monospace" font-size="13" font-weight="bold">A 6-PAGE SCANNED DOCUMENT, STEP BY STEP</text>
+          <rect x="20" y="44" width="420" height="30" fill="#FFFDF6" stroke="#16130E" stroke-width="2"/>
+          <text x="32" y="64" font-size="12.5">Original scan from a phone app</text>
+          <text x="596" y="64" font-size="13" font-weight="bold" fill="#D63F00">2.4 MB</text>
+          <rect x="20" y="86" width="180" height="30" fill="#FFE8DC" stroke="#16130E" stroke-width="2"/>
+          <text x="32" y="106" font-size="12.5">After Screen-level compression</text>
+          <text x="596" y="106" font-size="13" font-weight="bold" fill="#0E7A4F">186 KB ✓</text>
+          <text x="20" y="146" font-size="12" fill="#5E594E">Typical result, not a guarantee — your mileage follows your pages. Always read the tool's reported size.</text>
+        </svg>
+        <figcaption>Fig. 2 — What "under the limit" usually looks like</figcaption>
+      </figure>
+
+      <h2>Step 3 — If it still does not fit</h2>
+      <p>Work the other levers in order. <a href={`${base}/tool/delete-pdf-pages`}>Delete pages</a> the form never asked for (blank backs of ID cards are classic dead weight). Split a bundle and submit only the relevant part with <a href={`${base}/tool/split-pdf`}>Split PDF</a>. And if the PDF was built from photos, shrink the photos first with <a href={`${base}/tool/compress-image`}>Compress Image</a>, then rebuild the document with <a href={`${base}/tool/image-to-pdf`}>Image to PDF</a> at fit-to-page size — that route regularly beats generic compression, because the fat never gets into the PDF at all.</p>
+      <p>Last, a sanity habit: after any shrink, open the result and read page one. A file that passes the size check but cannot be read helps nobody — least of all you, when the form is a job or visa application.</p>
+    </div>
+  </div>
+</Base>

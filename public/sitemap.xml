@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://d1m3k.github.io/pdfconvert/</loc></url>
-  <url><loc>https://d1m3k.github.io/pdfconvert/tool/merge-pdf</loc></url>
-  <url><loc>https://d1m3k.github.io/pdfconvert/tool/image-to-pdf</loc></url>
-  <url><loc>https://d1m3k.github.io/pdfconvert/tool/compress-image</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/pdf-tools</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/image-tools</loc></url>
   <url><loc>https://d1m3k.github.io/pdfconvert/blog</loc></url>
   <url><loc>https://d1m3k.github.io/pdfconvert/blog/how-to-merge-pdf-files</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/blog/shrink-pdf-below-200kb</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/blog/png-vs-jpg-vs-webp</loc></url>
   <url><loc>https://d1m3k.github.io/pdfconvert/about</loc></url>
   <url><loc>https://d1m3k.github.io/pdfconvert/privacy-policy</loc></url>
   <url><loc>https://d1m3k.github.io/pdfconvert/terms</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/tool/merge-pdf</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/tool/split-pdf</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/tool/organize-pdf</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/tool/rotate-pdf</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/tool/delete-pdf-pages</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/tool/image-to-pdf</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/tool/pdf-to-jpg</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/tool/pdf-to-png</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/tool/compress-pdf</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/tool/protect-pdf</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/tool/unlock-pdf</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/tool/sign-pdf</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/tool/add-watermark</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/tool/add-page-numbers</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/tool/compress-image</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/tool/convert-image</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/tool/resize-image</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/tool/crop-image</loc></url>
+  <url><loc>https://d1m3k.github.io/pdfconvert/tool/rotate-image</loc></url>
 </urlset>

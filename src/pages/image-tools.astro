@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE, TOOLS } from '../config/site';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const tools = TOOLS.filter(t => t.category === 'Image');
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: `Image Tools — ${SITE.name}`,
+  description: 'Free image tools that run entirely in your browser: compress, convert, resize, crop and rotate PNG, JPG and WebP images without uploading them.',
+};
+---
+<Base title="Image Tools — Compress, Convert, Resize & Crop Free | PdfConvert" description="Every PdfConvert image tool in one place: compress, convert between PNG/JPG/WebP, resize to exact pixels, crop with ratio guides and rotate photos — free, in your browser." jsonLd={jsonLd}>
+  <div class="wrap">
+    <section class="hero">
+      <p class="eyebrow">Category · Image</p>
+      <h1>Image Tools</h1>
+      <p class="lede">Five everyday jobs for photos and graphics, done locally: make files smaller for uploads, switch formats for the web, hit an exact pixel size, crop out the clutter, and turn sideways shots upright. Your pictures never leave the device you are holding.</p>
+    </section>
+    <div class="grid" style="padding-bottom:14px">
+      {tools.map(t => (
+        <a class="toolcard" href={`${base}/tool/${t.slug}`}>
+          <span class="tag">Image</span>
+          <h3>{t.name}</h3>
+          <p>{t.blurb}</p>
+          <span class="go">Open tool →</span>
+        </a>
+      ))}
+    </div>
+    <section class="block">
+      <p class="eyebrow">Pictures that need to become a document?</p>
+      <h2><a href={`${base}/tool/image-to-pdf`}>Turn images into a PDF →</a></h2>
+      <p class="lede">Or browse the full <a href={`${base}/pdf-tools`}>PDF tools</a> — merge, split, compress, protect and sign, all without uploads.</p>
+    </section>
+  </div>
+</Base>

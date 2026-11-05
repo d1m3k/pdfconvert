@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE, TOOLS } from '../config/site';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const tools = TOOLS.filter(t => t.category === 'PDF');
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: `PDF Tools — ${SITE.name}`,
+  description: 'Free PDF tools that run entirely in your browser: merge, split, organize, convert, compress, protect, unlock, sign, watermark and number PDFs without uploading them.',
+};
+---
+<Base title="PDF Tools — Merge, Split, Convert, Compress & Protect Free | PdfConvert" description="Every PdfConvert PDF tool in one place: merge, split, organize, rotate, convert, compress, protect, unlock, sign and watermark PDFs — free, in your browser, with no uploads." jsonLd={jsonLd}>
+  <div class="wrap">
+    <section class="hero">
+      <p class="eyebrow">Category · PDF</p>
+      <h1>PDF Tools</h1>
+      <p class="lede">Fourteen ways to work on a PDF without handing the document to anyone's server. Organize it, convert it, shrink it, lock it, sign it — each tool below runs entirely in this browser, so contracts, statements and ID scans stay on your device from start to finish.</p>
+    </section>
+    <div class="grid" style="padding-bottom:14px">
+      {tools.map(t => (
+        <a class="toolcard" href={`${base}/tool/${t.slug}`}>
+          <span class="tag">PDF</span>
+          <h3>{t.name}</h3>
+          <p>{t.blurb}</p>
+          <span class="go">Open tool →</span>
+        </a>
+      ))}
+    </div>
+    <section class="block">
+      <p class="eyebrow">Working with pictures instead?</p>
+      <h2><a href={`${base}/image-tools`}>Browse the image tools →</a></h2>
+      <p class="lede">Compress, convert, resize, crop and rotate photos and graphics — the same no-upload promise, for image files.</p>
+    </section>
+  </div>
+</Base>
