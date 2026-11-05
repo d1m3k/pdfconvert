@@ -1,0 +1,50 @@
+---
+import ToolPage from '../../layouts/ToolPage.astro';
+import { TOOLS } from '../../config/site';
+const tool = TOOLS.find(t => t.slug === 'add-page-numbers')!;
+---
+<ToolPage
+  tool={tool}
+  title="Add Page Numbers to a PDF Free — 1, 1 / N, Page 1 of N | PdfConvert"
+  description="Add page numbers to every page of a PDF in your browser: plain numbers, 1 / N, or Page 1 of N, in any corner or centred. Free, instant and private."
+  lede="Reports, theses and contracts read better numbered. Pick a format and a corner — every page gets its number in one pass."
+  acceptAttr="application/pdf,.pdf"
+  dropTitle="Drop a PDF file here"
+  dropHint="or click to choose it from your device · PDF only · processed locally"
+  ctaLabel="Add page numbers"
+  initialStatus="Add a PDF file to number."
+  multiple={false}
+  steps={[
+    '<strong>Add your PDF.</strong> Numbering starts at the first page of the file as page 1.',
+    '<strong>Choose a format</strong> — a plain number, 1 / N so readers know the total, or the spelled-out Page 1 of N.',
+    '<strong>Choose a position</strong> — bottom centre is the classic; corners keep clear of centre-aligned footers.',
+    '<strong>Press Add page numbers and download</strong> the numbered document.',
+  ]}
+  goodToKnow="Numbers are drawn in a clean 10-point type with a safe margin from the page edge, so they survive printing and binding. If your document's cover should stay unnumbered, split the cover off first with Split PDF, number the body, then merge the two back together — all three tools live on this site and none of them uploads a thing."
+  faqs={[
+    { q: 'Can I skip the cover page?', a: 'Not in one pass here — split the cover into its own file, number the rest, then merge. It takes under a minute with the tools on this site.' },
+    { q: 'Can I change the font or colour?', a: 'This tool keeps one clean, print-safe style so results are predictable. Custom styling is on the roadmap.' },
+    { q: 'Do the numbers count from the file\'s first page?', a: 'Yes — the first page of the file becomes page 1, and the total N is the file\'s page count.' },
+    { q: 'Is anything uploaded?', a: 'Nothing. Numbering runs entirely in your browser.' },
+  ]}
+>
+  <div slot="options" class="options">
+    <label>Format
+      <select id="format">
+        <option value="plain">1</option>
+        <option value="of" selected>1 / N</option>
+        <option value="pageof">Page 1 of N</option>
+      </select>
+    </label>
+    <label>Position
+      <select id="position">
+        <option value="bottom-center" selected>Bottom centre</option>
+        <option value="bottom-right">Bottom right</option>
+        <option value="bottom-left">Bottom left</option>
+        <option value="top-right">Top right</option>
+        <option value="top-center">Top centre</option>
+      </select>
+    </label>
+  </div>
+</ToolPage>
+<script>import '../../scripts/page-numbers.ts';</script>

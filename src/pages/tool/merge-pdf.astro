@@ -2,9 +2,18 @@
 import Base from '../../layouts/Base.astro';
 import { TOOLS } from '../../config/site';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const related = TOOLS.filter(t => t.slug !== 'merge-pdf');
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Merge PDF — PdfConvert',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any (web browser)',
+  offers: { '@type': 'Offer', price: '0' },
+  description: 'Combine several PDF files into one, in the order you choose. Files are processed locally in your browser and never uploaded.',
+};
+const related = [...TOOLS.filter(t => t.category === 'PDF' && t.slug !== 'merge-pdf'), ...TOOLS.filter(t => t.category !== 'PDF')].slice(0, 3);
 ---
-<Base title="Merge PDF — Combine PDFs Free, In Your Browser | PdftConvert" description="Merge two or more PDF files into one, in the order you choose. Free, no sign-up, no watermark — and your PDFs are combined locally in your browser, never uploaded.">
+<Base title="Merge PDF — Combine PDFs Free, In Your Browser | PdfConvert" description="Merge two or more PDF files into one, in the order you choose. Free, no sign-up, no watermark — and your PDFs are combined locally in your browser, never uploaded." jsonLd={jsonLd}>
   <div class="wrap">
     <section class="hero" style="padding-bottom:0">
       <p class="eyebrow">PDF tool · Runs 100% in your browser</p>

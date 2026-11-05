@@ -2,9 +2,18 @@
 import Base from '../../layouts/Base.astro';
 import { TOOLS } from '../../config/site';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const related = TOOLS.filter(t => t.slug !== 'compress-image');
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Compress Image — PdfConvert',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any (web browser)',
+  offers: { '@type': 'Offer', price: '0' },
+  description: 'Compress PNG, JPG and WebP images with a quality slider and optional downscaling, with before/after sizes. Processed locally in your browser.',
+};
+const related = [...TOOLS.filter(t => t.category === 'Image' && t.slug !== 'compress-image'), ...TOOLS.filter(t => t.category !== 'Image')].slice(0, 3);
 ---
-<Base title="Compress Image — Shrink PNG, JPG & WebP Free | PdftConvert" description="Compress images online for free with a quality slider you control. Batch support, optional resizing, download one by one or as a ZIP. Runs entirely in your browser — no uploads.">
+<Base title="Compress Image — Shrink PNG, JPG & WebP Free | PdfConvert" description="Compress images online for free with a quality slider you control. Batch support, optional resizing, download one by one or as a ZIP. Runs entirely in your browser — no uploads." jsonLd={jsonLd}>
   <div class="wrap">
     <section class="hero" style="padding-bottom:0">
       <p class="eyebrow">Image tool · Runs 100% in your browser</p>

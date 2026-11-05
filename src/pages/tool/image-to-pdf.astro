@@ -2,9 +2,18 @@
 import Base from '../../layouts/Base.astro';
 import { TOOLS } from '../../config/site';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const related = TOOLS.filter(t => t.slug !== 'image-to-pdf');
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Image to PDF — PdfConvert',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any (web browser)',
+  offers: { '@type': 'Offer', price: '0' },
+  description: 'Convert JPG and PNG images into a single PDF document, on an A4 page or fitted to each image. Processed locally in your browser.',
+};
+const related = [...TOOLS.filter(t => t.category === 'PDF' && t.slug !== 'image-to-pdf'), ...TOOLS.filter(t => t.category !== 'PDF')].slice(0, 3);
 ---
-<Base title="Image to PDF — Convert JPG & PNG to PDF Free | PdftConvert" description="Turn JPG, PNG and other images into one PDF document in your browser. Choose A4 or fit-to-image pages and margins. Free, private, no uploads and no watermarks.">
+<Base title="Image to PDF — Convert JPG & PNG to PDF Free | PdfConvert" description="Turn JPG, PNG and other images into one PDF document in your browser. Choose A4 or fit-to-image pages and margins. Free, private, no uploads and no watermarks." jsonLd={jsonLd}>
   <div class="wrap">
     <section class="hero" style="padding-bottom:0">
       <p class="eyebrow">PDF tool · Runs 100% in your browser</p>

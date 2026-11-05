@@ -1,0 +1,33 @@
+---
+import ToolPage from '../../layouts/ToolPage.astro';
+import { TOOLS } from '../../config/site';
+const tool = TOOLS.find(t => t.slug === 'organize-pdf')!;
+---
+<ToolPage
+  tool={tool}
+  title="Organize PDF — Reorder, Rotate & Delete Pages Visually | PdfConvert"
+  description="Organize a PDF by sight: every page becomes a thumbnail you can move, rotate or delete before saving. Free and fully in your browser — nothing is uploaded."
+  lede="See your whole document at a glance. Drag the order into shape with the arrows, turn sideways pages upright, cross out the ones to drop — then save."
+  acceptAttr="application/pdf,.pdf"
+  dropTitle="Drop a PDF file here"
+  dropHint="or click to choose it from your device · PDF only · processed locally"
+  ctaLabel="Save organized PDF"
+  initialStatus="Add a PDF file to organize."
+  multiple={false}
+  steps={[
+    '<strong>Add your PDF.</strong> Every page is rendered as a thumbnail in the grid below.',
+    '<strong>Arrange the pages.</strong> Use ← → to move a page, ⟳ to rotate it 90°, and ✕ to mark it for deletion (↩ brings it back).',
+    '<strong>Press Save organized PDF.</strong> Your browser rebuilds the document in exactly the order shown.',
+    '<strong>Download</strong> and flip through the result to confirm the new order.',
+  ]}
+  goodToKnow="Thumbnails are rendered on your device from your file — they never travel anywhere. Deleted pages are only marked, not destroyed, until you save; your original file stays untouched either way. Rotation here turns the page permanently, and pages keep their original quality because they are copied, not re-rendered, into the result."
+  faqs={[
+    { q: 'How is this different from Delete PDF Pages?', a: 'That tool deletes by typed page numbers. This one shows you every page as a picture first, so it suits scanned documents where you cannot tell pages apart by number.' },
+    { q: 'Can I rotate a single page here?', a: 'Yes — the ⟳ button under any thumbnail rotates just that page, and the thumbnail shows the result before you save.' },
+    { q: 'Is there a page limit?', a: 'Only your device memory. Very large documents render thumbnails page by page, which can take a little while on a phone.' },
+    { q: 'Are the thumbnails uploaded for rendering?', a: 'No — rendering happens in your browser with code loaded into this tab. Airplane mode works.' },
+  ]}
+>
+  <div slot="extra"><div class="thumbs" id="thumbs"></div></div>
+</ToolPage>
+<script>import '../../scripts/organize.ts';</script>

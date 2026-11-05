@@ -1,0 +1,45 @@
+---
+import ToolPage from '../../layouts/ToolPage.astro';
+import { TOOLS } from '../../config/site';
+const tool = TOOLS.find(t => t.slug === 'crop-image')!;
+---
+<ToolPage
+  tool={tool}
+  title="Crop Image — Free Crop With 1:1, 4:3 & 16:9 Guides | PdfConvert"
+  description="Crop photos and screenshots in your browser with free-form or fixed-ratio selection. The crop is taken from the full-resolution original. No uploads, no sign-up."
+  lede="Cut the clutter out of a photo: drag a selection on the picture itself, with fixed ratios for profile pictures, posts and slides."
+  acceptAttr="image/*"
+  dropTitle="Drop an image here"
+  dropHint="or click to choose it from your device · processed locally"
+  ctaLabel="Crop & download"
+  initialStatus="Add an image to crop."
+  multiple={false}
+  steps={[
+    '<strong>Add your image.</strong> It appears below at a comfortable working size.',
+    '<strong>Choose a ratio</strong> — free, or locked 1:1, 4:3, 3:2, 16:9 — <strong>then drag</strong> across the picture to mark the area to keep.',
+    '<strong>Check the readout</strong>: the selection size is shown in true original pixels, not preview pixels.',
+    '<strong>Press Crop & download</strong> — the crop is cut from the full-resolution original.',
+  ]}
+  goodToKnow="The preview is scaled down to fit your screen, but the cut is not: cropping always samples the original file at full resolution, so a small-looking selection can still yield a large, sharp image. Portrait photos for documents usually want 3:4-style ratios; marketplace and profile pictures are almost always 1:1."
+  faqs={[
+    { q: 'Which ratio do I need?', a: 'Profile pictures: 1:1. YouTube/video thumbnails and slides: 16:9. Classic photos: 3:2 or 4:3. Anything else: free.' },
+    { q: 'Does cropping reduce quality?', a: 'The kept area is copied from the original pixels at full quality (JPG/WebP re-encode at 92%). Nothing is upscaled.' },
+    { q: 'Can I crop a screenshot to one window?', a: 'Yes — add the screenshot and drag tightly around the window. Resize afterwards if the target box has exact pixels.' },
+    { q: 'Is my photo uploaded?', a: 'No. Cropping runs in your browser tab, on your device.' },
+  ]}
+>
+  <div slot="options" class="options">
+    <label>Selection ratio
+      <select id="ratio">
+        <option value="0" selected>Free</option>
+        <option value="1">1 : 1 · square</option>
+        <option value="1.3333">4 : 3</option>
+        <option value="1.5">3 : 2</option>
+        <option value="1.7778">16 : 9</option>
+        <option value="0.75">3 : 4 · portrait</option>
+      </select>
+    </label>
+  </div>
+  <div slot="extra"><div class="stagebox"><canvas id="stage"></canvas></div></div>
+</ToolPage>
+<script>import '../../scripts/crop-image.ts';</script>

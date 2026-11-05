@@ -1,0 +1,44 @@
+---
+import ToolPage from '../../layouts/ToolPage.astro';
+import { TOOLS } from '../../config/site';
+const tool = TOOLS.find(t => t.slug === 'convert-image')!;
+---
+<ToolPage
+  tool={tool}
+  title="Convert Image — PNG to JPG, JPG to WebP & More, Free | PdfConvert"
+  description="Convert images between PNG, JPG and WebP in batches, right in your browser. Pick the target format and quality; download singly or as a ZIP. No uploads."
+  lede="PNG to JPG for photos, JPG to WebP for the web, anything to PNG for crisp graphics — whole folders at a time, without uploading a single file."
+  acceptAttr="image/*"
+  dropTitle="Drop images here"
+  dropHint="or click to choose them · PNG, JPG, WebP and more · processed locally"
+  ctaLabel="Convert images"
+  initialStatus="Add one or more images to convert."
+  steps={[
+    '<strong>Add your images.</strong> Batches are welcome — mixed formats are fine.',
+    '<strong>Choose the target format.</strong> JPG for photos and small files, WebP for modern websites, PNG for graphics that must stay lossless.',
+    '<strong>Set the quality</strong> for JPG/WebP output — 85% is the usual sweet spot.',
+    '<strong>Convert and download</strong> each file, or all of them as one ZIP.',
+  ]}
+  goodToKnow="Converting a photo from PNG to JPG typically cuts its size by 70–90% with no visible change. Going the other way — JPG to PNG — cannot restore quality the JPG already threw away; it only stops further loss. Transparent backgrounds survive in PNG and WebP, and turn white in JPG, which has no transparency."
+  faqs={[
+    { q: 'Which format should I convert to?', a: 'Photos → JPG (smallest, universal) or WebP (smaller still, for websites). Screenshots, logos and graphics → PNG to keep edges perfectly sharp.' },
+    { q: 'Will converting reduce quality?', a: 'PNG output is lossless. JPG and WebP re-encode at the quality you set — 85% is visually identical for photographs in almost every case.' },
+    { q: 'Can I convert a whole folder at once?', a: 'Select all the files when adding (or drop them together) and download the results as a single ZIP.' },
+    { q: 'Are my images uploaded for conversion?', a: 'No — conversion runs in your browser, on your device.' },
+  ]}
+>
+  <div slot="options" class="options">
+    <label>Convert to
+      <select id="format">
+        <option value="image/jpeg" selected>JPG</option>
+        <option value="image/png">PNG</option>
+        <option value="image/webp">WebP</option>
+      </select>
+    </label>
+    <label>Quality <span class="qval" id="qval">85%</span>
+      <input type="range" id="quality" min="10" max="100" value="85" />
+      <span class="hint">Applies to JPG / WebP output</span>
+    </label>
+  </div>
+</ToolPage>
+<script>import '../../scripts/convert-image.ts';</script>

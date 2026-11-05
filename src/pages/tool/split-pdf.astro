@@ -1,0 +1,44 @@
+---
+import ToolPage from '../../layouts/ToolPage.astro';
+import { TOOLS } from '../../config/site';
+const tool = TOOLS.find(t => t.slug === 'split-pdf')!;
+---
+<ToolPage
+  tool={tool}
+  title="Split PDF — Split Pages & Ranges Free, In Your Browser | PdfConvert"
+  description="Split a PDF into separate files by page ranges, or extract every page as its own PDF. Free, no sign-up, processed locally in your browser — never uploaded."
+  lede="Cut one PDF into the pieces you actually need: one file per page range, or a separate PDF for every single page, delivered as a tidy ZIP."
+  acceptAttr="application/pdf,.pdf"
+  dropTitle="Drop a PDF file here"
+  dropHint="or click to choose it from your device · PDF only · processed locally"
+  ctaLabel="Split PDF"
+  initialStatus="Add a PDF file to split."
+  multiple={false}
+  steps={[
+    '<strong>Add your PDF.</strong> Drop the document you want to split into the box above.',
+    '<strong>Choose a mode.</strong> "Every page" makes one PDF per page; "Page ranges" builds one PDF per range you type, such as 1-3, 5, 8-10.',
+    '<strong>Press Split PDF.</strong> Your browser cuts the document on the spot — nothing is uploaded.',
+    '<strong>Download.</strong> A single result downloads directly; several results arrive packed in one ZIP.',
+  ]}
+  goodToKnow="Splitting copies pages exactly as they are, so text, links and quality survive untouched. Ranges are counted from 1, just like your PDF reader shows them. If a range reaches past the end of the document, the tool stops and tells you the real page count instead of guessing."
+  faqs={[
+    { q: 'Can I split a PDF into more than two parts?', a: 'Yes. In ranges mode, every comma-separated range becomes its own file — 1-3, 4-6, 7-9 produces three PDFs in one ZIP.' },
+    { q: 'Will splitting reduce the quality?', a: 'No. Pages are copied, not re-rendered, so the split files look exactly like the original document.' },
+    { q: 'Is my PDF uploaded to a server?', a: 'Never. The splitting runs in this browser tab on your device — try it in airplane mode if you want proof.' },
+    { q: 'Why did I get a ZIP file?', a: 'When a split produces more than one PDF, they are bundled into a single ZIP so you download everything in one click.' },
+  ]}
+>
+  <div slot="options" class="options">
+    <label>Split mode
+      <select id="mode">
+        <option value="ranges" selected>Page ranges → one file per range</option>
+        <option value="every">Every page → one file per page</option>
+      </select>
+    </label>
+    <label>Ranges (for ranges mode)
+      <input type="text" id="ranges" value="1-3" size="18" />
+      <span class="hint">Example: 1-3, 5, 8-10</span>
+    </label>
+  </div>
+</ToolPage>
+<script>import '../../scripts/split.ts';</script>

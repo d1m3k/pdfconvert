@@ -1,0 +1,39 @@
+---
+import ToolPage from '../../layouts/ToolPage.astro';
+import { TOOLS } from '../../config/site';
+const tool = TOOLS.find(t => t.slug === 'rotate-image')!;
+---
+<ToolPage
+  tool={tool}
+  title="Rotate & Flip Image — Turn Photos Upright Free | PdfConvert"
+  description="Rotate an image 90° either way or mirror it horizontally and vertically, at full resolution, in your browser. Free and private — nothing is uploaded."
+  lede="Sideways phone photo? Mirrored selfie? Turn it, flip it, check the live preview, and download the corrected image at full size."
+  acceptAttr="image/*"
+  dropTitle="Drop an image here"
+  dropHint="or click to choose it from your device · processed locally"
+  ctaLabel="Download corrected image"
+  initialStatus="Add an image to rotate or flip."
+  multiple={false}
+  steps={[
+    '<strong>Add your image.</strong> A live preview appears below.',
+    '<strong>Use the buttons</strong> — rotate left, rotate right, flip horizontal, flip vertical — as many times as you need.',
+    '<strong>Check the preview</strong>; it shows exactly the orientation that will be saved.',
+    '<strong>Download</strong> the corrected image at its full original resolution.',
+  ]}
+  goodToKnow="The saved file is genuinely re-drawn in the new orientation, so it displays upright everywhere — including old software that ignores the orientation tag phones write into photos. Flipping is a true mirror: text in the image will read backwards, which is exactly what you want for correcting front-camera selfies and exactly what you do not want for documents."
+  faqs={[
+    { q: 'Why does my photo keep showing sideways in some apps?', a: 'Many phones only record a "rotate me" note in the file instead of rotating the pixels. This tool rotates the actual pixels, ending the problem everywhere.' },
+    { q: 'Does rotating reduce quality?', a: 'PNG and WebP are lossless here. JPG is re-encoded once at 95% — a single careful pass, invisible in normal use.' },
+    { q: 'What is the difference between flip and rotate?', a: 'Rotate turns the whole image like a steering wheel. Flip mirrors it like a reflection — left and right swap places.' },
+    { q: 'Is my photo uploaded?', a: 'Never. Everything happens in your browser.' },
+  ]}
+>
+  <div slot="options" class="options">
+    <button class="btn ghost small" id="rotl" type="button">⟲ Rotate left</button>
+    <button class="btn ghost small" id="rotr" type="button">⟳ Rotate right</button>
+    <button class="btn ghost small" id="fliph" type="button">⇋ Flip horizontal</button>
+    <button class="btn ghost small" id="flipv" type="button">⇅ Flip vertical</button>
+  </div>
+  <div slot="extra"><div class="stagebox"><canvas id="stage"></canvas></div></div>
+</ToolPage>
+<script>import '../../scripts/rotate-image.ts';</script>

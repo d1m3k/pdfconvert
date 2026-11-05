@@ -1,0 +1,40 @@
+---
+import ToolPage from '../../layouts/ToolPage.astro';
+import { TOOLS } from '../../config/site';
+const tool = TOOLS.find(t => t.slug === 'protect-pdf')!;
+---
+<ToolPage
+  tool={tool}
+  title="Protect PDF — Password-Protect a PDF With AES-256 Free | PdfConvert"
+  description="Encrypt a PDF with a password using the qpdf engine running in your browser. AES-256 protection, no uploads — the file and the password never leave your device."
+  lede="Lock a document before you send it. Set a password and the PDF is encrypted with AES-256, the same standard offices and banks rely on."
+  acceptAttr="application/pdf,.pdf"
+  dropTitle="Drop a PDF file here"
+  dropHint="or click to choose it from your device · PDF only · processed locally"
+  ctaLabel="Protect PDF"
+  initialStatus="Add a PDF file to protect."
+  multiple={false}
+  steps={[
+    '<strong>Add your PDF.</strong> Contracts, statements and scans are the usual candidates.',
+    '<strong>Set a password.</strong> Type it twice. It is never sent anywhere — there is no server to send it to.',
+    '<strong>Press Protect PDF.</strong> The encryption engine runs in this tab and locks the file.',
+    '<strong>Download and share the password separately</strong> — never in the same message as the file.',
+  ]}
+  goodToKnow="Protection here is real cryptography (AES-256 via the qpdf engine), not a cosmetic flag: anyone opening the result is asked for the password by every standard reader. That also means a forgotten password is gone for good — we cannot recover it, because we never see it. Store it in your password manager before you share the file."
+  faqs={[
+    { q: 'How strong is the protection?', a: 'AES-256 with the password required to open the file at all. A long, unique password makes it practically unbreakable; a short one is only as strong as the password itself.' },
+    { q: 'Can you recover my password if I forget it?', a: 'No — and that is by design. The password is used locally in your browser and never transmitted or stored anywhere.' },
+    { q: 'Will protected files open in normal readers?', a: 'Yes. The encryption is the PDF standard, so Adobe Reader, browsers and phone readers all prompt for the password and open it.' },
+    { q: 'Is the password sent to a server for processing?', a: 'Never. Both the file and the password stay inside this browser tab.' },
+  ]}
+>
+  <div slot="options" class="options">
+    <label>Password to open the file
+      <input type="password" id="pw" autocomplete="new-password" />
+    </label>
+    <label>Repeat the password
+      <input type="password" id="pw2" autocomplete="new-password" />
+    </label>
+  </div>
+</ToolPage>
+<script>import '../../scripts/protect.ts';</script>

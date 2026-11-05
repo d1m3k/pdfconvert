@@ -1,0 +1,53 @@
+---
+import ToolPage from '../../layouts/ToolPage.astro';
+import { TOOLS } from '../../config/site';
+const tool = TOOLS.find(t => t.slug === 'resize-image')!;
+---
+<ToolPage
+  tool={tool}
+  title="Resize Image — Change Image Size in Pixels or Percent | PdfConvert"
+  description="Resize an image to exact pixel dimensions or a percentage, with the aspect ratio locked, in your browser. Free, instant, and nothing is uploaded."
+  lede="Fit a photo to the exact box a form, marketplace or CMS demands — type the pixels, or scale by percentage with the proportions locked."
+  acceptAttr="image/*"
+  dropTitle="Drop an image here"
+  dropHint="or click to choose it from your device · processed locally"
+  ctaLabel="Resize image"
+  initialStatus="Add an image to resize."
+  multiple={false}
+  steps={[
+    '<strong>Add your image.</strong> Its current dimensions appear in the size boxes.',
+    '<strong>Set the new size.</strong> Type a width or height — with the lock on, the other side follows automatically — or pick a percentage.',
+    '<strong>Press Resize image.</strong> The image is redrawn at exactly your dimensions.',
+    '<strong>Download</strong> the resized copy; the original stays untouched.',
+  ]}
+  goodToKnow="Shrinking is safe; enlarging cannot invent detail, so a small image blown up will look soft — the tool allows it, but warns you here instead: start from the largest original you have. Resizing to a form's exact pixel box (a common demand for ID photos and marketplace listings) avoids the platform re-cropping your picture for you."
+  faqs={[
+    { q: 'What size do upload forms usually want?', a: 'Common boxes: 300×300 or 600×600 for profile and product photos, 1200×630 for social sharing, 1920 wide for website heroes. Check the form’s own note first — exact beats approximate.' },
+    { q: 'Why does the other box change when I type?', a: 'That is the aspect-ratio lock keeping proportions true. Untick it only if you deliberately want to stretch the image.' },
+    { q: 'Will resizing shrink the file size too?', a: 'Smaller dimensions almost always mean a smaller file. For the tightest result, resize first, then run Compress Image.' },
+    { q: 'Is my image uploaded?', a: 'Never — resizing happens in your browser.' },
+  ]}
+>
+  <div slot="options" class="options">
+    <label>Width (px)
+      <input type="number" id="w" min="1" />
+    </label>
+    <label>Height (px)
+      <input type="number" id="h" min="1" />
+    </label>
+    <label>Scale
+      <select id="pct">
+        <option value="0">Custom</option>
+        <option value="25">25%</option>
+        <option value="50">50%</option>
+        <option value="75">75%</option>
+        <option value="150">150%</option>
+        <option value="200">200%</option>
+      </select>
+    </label>
+    <label class="checkrow" style="flex-direction:row">
+      <input type="checkbox" id="lock" checked /> Lock aspect ratio
+    </label>
+  </div>
+</ToolPage>
+<script>import '../../scripts/resize-image.ts';</script>

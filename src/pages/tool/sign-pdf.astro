@@ -1,0 +1,52 @@
+---
+import ToolPage from '../../layouts/ToolPage.astro';
+import { TOOLS } from '../../config/site';
+const tool = TOOLS.find(t => t.slug === 'sign-pdf')!;
+---
+<ToolPage
+  tool={tool}
+  title="Sign PDF — Draw & Place Your Signature Free | PdfConvert"
+  description="Sign a PDF in your browser: draw your signature with mouse, pen or finger, click where it belongs on the page, and download the signed document. Nothing is uploaded."
+  lede="Draw your signature once, click the spot on the page where it belongs, and download a signed copy — no printer, no scanner, no uploads."
+  acceptAttr="application/pdf,.pdf"
+  dropTitle="Drop a PDF file here"
+  dropHint="or click to choose it from your device · PDF only · processed locally"
+  ctaLabel="Place signature & download"
+  initialStatus="Add the PDF to sign."
+  multiple={false}
+  steps={[
+    '<strong>Add the document</strong> and pick the page to sign — the page preview appears below.',
+    '<strong>Draw your signature</strong> in the signature box with your mouse, stylus or finger. Clear and redo until it looks like yours.',
+    '<strong>Click the page preview</strong> where the signature should sit (or skip the click for the classic bottom-right spot), and set its width.',
+    '<strong>Press the button</strong> to embed the signature and download the signed PDF.',
+  ]}
+  goodToKnow="This places a faithful image of your handwritten signature into the document — perfect for forms, agreements and acknowledgements. It is not a cryptographic digital signature with a certificate; where a certified e-signature is legally required, your organisation's signing platform is the right tool. Your signature image is created and embedded entirely on your device."
+  faqs={[
+    { q: 'Is this the same as a digital signature?', a: 'No. It embeds your handwritten signature as an image, which is widely accepted for everyday documents. Certificate-based digital signatures are a different, cryptographic mechanism.' },
+    { q: 'Can I sign on a phone?', a: 'Yes — the pad accepts touch and stylus input, and the page preview is tap-to-place.' },
+    { q: 'Is my signature stored anywhere?', a: 'No. It exists only in this tab while you work, and inside the signed PDF you download.' },
+    { q: 'Can I sign several pages?', a: 'Run the tool once per page you need signed; each run produces a complete signed copy to build on.' },
+  ]}
+>
+  <div slot="options" class="options">
+    <label>Page to sign
+      <select id="page"></select>
+    </label>
+    <label>Signature width
+      <select id="sigwidth">
+        <option value="18">Small · 18% of page</option>
+        <option value="25" selected>Medium · 25% of page</option>
+        <option value="35">Large · 35% of page</option>
+      </select>
+    </label>
+  </div>
+  <div slot="extra">
+    <div class="stagebox"><canvas id="stage"></canvas></div>
+    <div class="sigwrap">
+      <p class="eyebrow">Your signature</p>
+      <canvas id="pad" width="520" height="180"></canvas>
+      <div style="margin-top:10px"><button class="btn ghost small" id="clearpad" type="button">Clear signature</button></div>
+    </div>
+  </div>
+</ToolPage>
+<script>import '../../scripts/sign.ts';</script>

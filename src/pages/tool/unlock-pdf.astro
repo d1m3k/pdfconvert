@@ -1,0 +1,38 @@
+---
+import ToolPage from '../../layouts/ToolPage.astro';
+import { TOOLS } from '../../config/site';
+const tool = TOOLS.find(t => t.slug === 'unlock-pdf')!;
+---
+<ToolPage
+  tool={tool}
+  title="Unlock PDF — Remove a Password From Your Own PDF Free | PdfConvert"
+  description="Remove the password from a PDF you own and know the password to, or clear owner restrictions, in your browser. No cracking, no uploads — the file stays on your device."
+  lede="For files that are yours: enter the password once, and save a copy that opens freely. No password? Owner restrictions can often be cleared without one."
+  acceptAttr="application/pdf,.pdf"
+  dropTitle="Drop a PDF file here"
+  dropHint="or click to choose it from your device · PDF only · processed locally"
+  ctaLabel="Unlock PDF"
+  initialStatus="Add a PDF file to unlock."
+  multiple={false}
+  steps={[
+    '<strong>Add your protected PDF.</strong> Bank statements and payslips are the classics.',
+    '<strong>Enter its password</strong> if the file needs one to open. Leave it blank to only clear owner restrictions (no-print / no-copy flags).',
+    '<strong>Press Unlock PDF.</strong> A decrypted copy is built in this tab.',
+    '<strong>Download the unlocked copy</strong> and store it somewhere safe — it no longer asks for a password.',
+  ]}
+  goodToKnow="This tool is deliberately honest about what it is: it removes protection when you know the password, or clears owner restrictions, which are flags rather than encryption. It does not guess, crack or bypass an opening password you do not know — no legitimate tool can, and any site claiming otherwise is not telling the truth."
+  faqs={[
+    { q: 'I forgot the password. Can this recover it?', a: 'No. If a password is required to open the file and you do not know it, the encryption is doing its job. Check your password manager or ask the sender.' },
+    { q: 'What are owner restrictions?', a: 'Flags the author set to discourage printing, copying or editing. They are not encryption, so they can be cleared without a password — that is the blank-password mode here.' },
+    { q: 'Is it legal to unlock a PDF?', a: 'Unlocking documents you own or are authorised to handle is a normal office task. Do not use it on documents you have no rights to.' },
+    { q: 'Is my file or password uploaded?', a: 'Neither. Decryption runs in your browser via the qpdf engine; nothing leaves the device.' },
+  ]}
+>
+  <div slot="options" class="options">
+    <label>Current password (if the file needs one to open)
+      <input type="password" id="pw" autocomplete="current-password" />
+      <span class="hint">Leave blank to only clear owner restrictions</span>
+    </label>
+  </div>
+</ToolPage>
+<script>import '../../scripts/unlock.ts';</script>
