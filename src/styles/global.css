@@ -1,4 +1,4 @@
-/* PdftConvert demo identity — "workshop industrial": bone paper, near-black ink,
+/* PdfConvert demo identity — "workshop industrial": bone paper, near-black ink,
    safety-orange accent, hard offset shadows, mono micro-labels.
    Deliberately unrelated to any reference site's corporate-blue look. */
 :root{
@@ -24,7 +24,7 @@ h2{font-size:clamp(23px,3.2vw,32px);font-weight:700}
   border-radius:0;padding:13px 26px;font:700 16px var(--font-body);cursor:pointer;text-decoration:none;
   box-shadow:5px 5px 0 var(--ink);transition:transform .1s, box-shadow .1s}
 .btn:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ink)}
-.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+.btn[disabled]{background:#D8D2C2;color:var(--ink);cursor:not-allowed;transform:none;box-shadow:none;border-style:dashed}
 .btn.ghost{background:var(--card);color:var(--ink)}
 .btn.small{padding:8px 16px;font-size:14px;box-shadow:3px 3px 0 var(--ink)}
 .tag{display:inline-block;border:2px solid var(--ink);background:var(--accent-soft);color:var(--ink);
@@ -88,6 +88,23 @@ section.block{padding:36px 0}
 .result{display:flex;align-items:center;gap:12px;background:var(--okbg);border:2px solid var(--ink);padding:10px 14px;font-size:14.5px}
 .result .grow{flex:1;font-weight:600}
 .savings{color:var(--ok);font-weight:800;white-space:nowrap;font-family:var(--font-mono);font-size:13.5px}
+/* tool extras: thumbnails, inputs, signature pad, crop stage */
+.options input[type=text],.options input[type=password],.options input[type=number]{
+  border:2px solid var(--ink);background:var(--card);padding:8px 10px;font:600 14.5px var(--font-body);min-width:0}
+.options .hint{font-weight:400;color:var(--muted);font-size:12.5px}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px;margin:18px 0}
+.thumb{border:2px solid var(--ink);background:var(--paper);padding:8px;display:flex;flex-direction:column;gap:7px}
+.thumb canvas,.thumb img{width:100%;height:auto;display:block;background:#fff;border:1px solid var(--softline)}
+.thumb .tbar{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+.thumb .tbar button{border:2px solid var(--ink);background:var(--card);padding:2px 8px;cursor:pointer;font-size:12.5px;font-weight:700}
+.thumb .pno{font:700 12px var(--font-mono);color:var(--muted);margin-right:auto}
+.thumb.off{opacity:.35}
+.sigwrap{margin:14px 0}
+.sigwrap canvas{border:3px dashed var(--ink);background:#fff;max-width:100%;touch-action:none;cursor:crosshair}
+.stagebox{margin:14px 0;border:2px solid var(--ink);background:#fff;padding:10px;overflow:auto}
+.stagebox canvas{max-width:100%;height:auto;display:block;margin:0 auto}
+.checkrow{display:flex;gap:10px;align-items:center;font-weight:600;font-size:14.5px;margin:10px 0}
+.checkrow input{width:19px;height:19px;accent-color:var(--accent)}
 /* prose / blog */
 .prose{max-width:74ch}
 .prose h2{margin-top:1.4em}
